@@ -3,87 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinStart - Coming Soon</title>
+    <title>FinStart - Fintech Ebook for Starters</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Reset and Base Styles */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f0f8ff; /* Light blue background */
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #00994d;
+            --accent-color: #800080;
+            --cta-color: #ff69b4;
+            --text-color: #333;
+            --bg-light: #f0f8ff;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --container-width: 1200px;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            color: var(--text-color);
             line-height: 1.6;
         }
+
         .container {
-            max-width: 800px;
+            max-width: var(--container-width);
             margin: 0 auto;
-            padding: 20px;
-            text-align: center;
+            padding: 0 var(--spacing-sm);
         }
-        h1 {
-            color: #0066cc; /* Blue */
-            font-size: 2.5em;
-            margin-bottom: 20px;
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
-        h2 {
-            color: #00994d; /* Green */
-            font-size: 1.8em;
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
         }
-        p {
-            margin-bottom: 15px;
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
         }
-        .highlight {
-            color: #800080; /* Purple */
-            font-weight: bold;
+
+        /* Hero Section */
+        .hero {
+            padding: calc(80px + var(--spacing-lg)) 0 var(--spacing-lg);
+            background: var(--bg-light);
         }
-        .cta {
-            display: inline-block;
-            background-color: #ff69b4; /* Pink */
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        /* First Content Section */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg) 0;
+        }
+
+        .content-box {
+            padding: var(--spacing-sm);
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Second Content Section */
+        .content-full {
+            padding: var(--spacing-lg) 0;
+            background: var(--bg-light);
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+
+        /* Tips Section */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg) 0;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: var(--spacing-lg);
+            padding: var(--spacing-lg) 0;
+        }
+
+        .testimonial-card {
+            display: flex;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: white;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg) 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary-color);
             color: white;
-            padding: 12px 24px;
-            text-decoration: none;
+            padding: var(--spacing-lg) 0;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: var(--spacing-sm);
+        }
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg) 0;
+        }
+
+        /* Partners Section */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg) 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: var(--spacing-lg) 0;
+        }
+
+        /* Common Components */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
             border-radius: 5px;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
-        .cta:hover {
-            background-color: #ff1493; /* Darker pink on hover */
+
+        .btn-primary {
+            background: var(--cta-color);
+            color: white;
         }
-        .survey-message {
-            margin-top: 30px;
-            color: #666;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+
+        .btn-primary:hover {
+            background: #ff1493;
         }
-        .time-note {
-            font-size: 0.9em;
-            margin-top: 10px;
-            color: #888;
-        }
-        .language-note {
-            font-size: 0.85em;
-            color: #888;
-            margin-top: 5px;
-            font-style: italic;
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content,
+            .content-grid,
+            .two-columns,
+            .testimonials-section {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>FinStart</h1>
-        <h2>Fintech Ebook for starters & spark like a star</h2>
-        <p>FinStart empowers fintech beginners with an insightful ebook, providing essential knowledge on payments, transfers, and fintech trends. Aiming to inspire students and career shifters, FinStart helps them become future stars in the fintech industry.</p>
-        <p class="highlight">FinStart is a non-profit project founded by a group of passionate fintech enthusiasts.</p>
-        <p>We provide essential knowledge for fintech beginners through an insightful ebook.</p>
-        <p><strong>Our website is coming soon!</strong></p>
-        <p>Stay tuned for more information about our project, team, and the stories behind FinStart.</p>
-        <a href="https://lnkd.in/gshVCiZJ" class="cta" target="_self">Support Us</a>
-        <div class="survey-message">
-            <p>Help shape the future of fintech education! Take our quick survey to share your interests and challenges in the fintech industry. As a thank you, you'll be among the first to receive our ebook when it's ready! 📚✨</p>
-            <p class="time-note">The survey takes only 4-5 minutes to complete.</p>
-            <p class="language-note">Note: Survey is in Vietnamese as we're focusing on the Vietnamese market.</p>
+<!-- Header -->
+<header class="header">
+    <div class="container header-content">
+        <div class="logo-container">
+            <img src="/placeholder-puppy-logo.svg" alt="FinStart Logo" height="40">
+            <span>FinStart</span>
+        </div>
+        <a href="#get-ebook" class="btn btn-primary">Download Ebook</a>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container hero-content">
+        <div class="hero-text">
+            <h1>FINSTART</h1>
+            <p>Bước KHỞI ĐẦU vững chắc cho sự nghiệp FINTECH của bạn!</p>
+            <a href="#get-ebook" class="btn btn-primary">Get Started</a>
+        </div>
+        <div class="hero-graphic">
+            <img src="/img/placeholder-hero-graphic-600x400.svg" alt="Hero Graphic">
         </div>
     </div>
+</section>
+
+<!-- First Content Section -->
+<section class="content-grid container">
+    <div class="left-column">
+        <div class="content-box">Kiến thức nền tảng: Tìm hiểu mọi khái niệm cơ bản về Fintech một cách dễ hiểu.</div>
+        <div class="content-box">Xu hướng mới nhất: Cập nhật những công nghệ và sản phẩm Fintech đang làm mưa làm gió.
+        </div>
+    </div>
+    <div class="center-column">
+        <h2>"CATCH STAR" SỰ NGHIỆP CÙNG FINSTART</h2>
+    </div>
+    <div class="right-column">
+        <div class="content-box">Cơ hội việc làm: Khám phá những vị trí hấp dẫn và tiềm năng trong ngành.</div>
+        <div class="content-box">Cộng đồng: Kết nối với những người đam mê Fintech và cùng nhau phát triển.</div>
+    </div>
+    <div class="full-width">
+        <div class="content-box">Tải Ebook MIỄN PHÍ ngay!</div>
+    </div>
+</section>
+
+<!-- Second Content Section -->
+<section class="content-full">
+    <div class="container">
+        <p>Bạn là sinh viên ngành kinh tế, công nghệ thông tin hoặc các ngành liên quan sắp tốt nghiệp cần tìm kiếm một
+            công việc bắt đầu?</p>
+        <h3>DÙ BẠN LÀ AI!</h3>
+        <p>EBOOK SẼ LÀ VÌ "SAO" TINH TÚ CỨU RỖI CON ĐƯỜNG SỰ NGHIỆP CỦA BẠN</p>
+        <div class="two-columns">
+            <div>Bạn đã đi làm nhưng mong muốn tìm kiếm & chuyển sang một ngành nghề mới, đầy triển vọng?</div>
+            <div>Hay chỉ đơn giản Bạn muốn hiểu rõ hơn về Fintech và cơ hội nghề nghiệp trong lĩnh vực này?</div>
+        </div>
+    </div>
+</section>
+
+<!-- Tips Section -->
+<section class="container">
+    <h2>Tổng quan về Fintech</h2>
+    <div class="tips-grid">
+        <!-- Tips content will go here -->
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="container testimonials-section">
+    <div class="testimonials">
+        <h2>What Readers Say</h2>
+        <div class="testimonial-card">
+            <img src="/img/placeholder-60x60.svg" alt="Profile" class="profile-img">
+            <div class="testimonial-content">
+                <h4>Reader Name</h4>
+                <p>Testimonial text</p>
+            </div>
+        </div>
+        <!-- More testimonials -->
+    </div>
+    <div class="ebook-preview">
+        <h2>Preview Pages</h2>
+        <!-- Slider or video will go here -->
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="container">
+    <h2>Our Team</h2>
+    <div class="team-grid">
+        <!-- Team members will go here -->
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section id="get-ebook" class="cta-section">
+    <div class="container">
+        <div class="form-container">
+            <h2>Tải Ebook nhận ngay Bí kíp chinh phục "Star" FINTECH!</h2>
+            <form>
+                <!-- Form fields -->
+            </form>
+        </div>
+        <div class="donation-info">
+            <!-- Donation details -->
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="container faq-section">
+    <h2>Câu hỏi thường gặp</h2>
+    <div class="faq-grid">
+        <!-- FAQs will go here -->
+    </div>
+    <div class="question-form">
+        <!-- Question form -->
+    </div>
+</section>
+
+<!-- Blog Section -->
+<section class="container">
+    <h2>Blog FinStart</h2>
+    <div class="blog-grid">
+        <!-- Blog posts and case studies -->
+    </div>
+</section>
+
+<!-- Partners Section -->
+<section class="container">
+    <h2>Các đối tác FINSTART</h2>
+    <div class="partners-grid">
+        <!-- Partner logos and info -->
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <!-- Footer content -->
+    </div>
+</footer>
 </body>
 </html>
